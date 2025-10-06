@@ -21,25 +21,29 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        val targetGlucose: EditText = findViewById(R.id.target_glucose)
         val resultBtn: Button = findViewById(R.id.result)
+
+        targetGlucose.setText("5")
+
+        resultBtn.setOnClickListener {
+            calculateCorrectioninsulin()
+        }
+    }
+    fun calculateCorrectioninsulin() {
         val currentGlucose: EditText = findViewById(R.id.current_glucose)
         val targetGlucose: EditText = findViewById(R.id.target_glucose)
         val correctionInsulin: TextView = findViewById(R.id.correction_insulin)
 
+        val currentValue = currentGlucose.text.toString().toDoubleOrNull()
+        val targetValue = targetGlucose.text.toString().toDoubleOrNull()
 
-
-        resultBtn.setOnClickListener {
-            val currentValue = currentGlucose.text.toString().toDoubleOrNull()
-            val targetValue = targetGlucose.text.toString().toDoubleOrNull()
-
-            if (currentValue != null && targetValue != null && currentValue > 0 && targetValue > 0) {
-                val correction = (currentValue - targetValue) / 2
-                correctionInsulin.text = String.format("%.1f", correction)
-            } else {
-                Toast.makeText(this, "Введите корректные значения", Toast.LENGTH_SHORT).show()
-            }
+        if (currentValue != null && targetValue != null && currentValue > 0 && targetValue > 0) {
+            val correction = (currentValue - targetValue) / 2
+            correctionInsulin.text = String.format("%.1f", correction)
+        } else {
+            val toast = Toast.makeText(this, "This is a custom Toast", Toast.LENGTH_SHORT)
+            toast.showIncorrectToast("Некорректное значение!", this)
         }
-
     }
 }
