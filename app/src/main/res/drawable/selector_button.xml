@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Состояние: кнопка нажата -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#45A049" /> <!-- более тёмный цвет -->
+            <corners android:radius="22dp" />
+            <stroke android:width="1dp" android:color="#CCCCD0" />
+        </shape>
+    </item>
+
+    <!-- Состояние: кнопка отключена -->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="#A5D6A7" /> <!-- светло-зелёный -->
+            <corners android:radius="22dp" />
+            <stroke android:width="1dp" android:color="#CCCCD0" />
+        </shape>
+    </item>
+
+    <!-- Состояние по умолчанию -->
+    <item>
+        <shape>
+            <solid android:color="#4CAF50" /> <!-- обычный цвет -->
+            <corners android:radius="22dp" />
+            <stroke android:width="1dp" android:color="#CCCCD0" />
+        </shape>
+    </item>
+</selector>
