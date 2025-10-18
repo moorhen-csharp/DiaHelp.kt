@@ -21,9 +21,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val currentGlucose: EditText = findViewById(R.id.current_glucose)
+        val correctionInsulin: TextView = findViewById(R.id.correction_insulin)
         val targetGlucose: EditText = findViewById(R.id.target_glucose)
         val resultBtn: Button = findViewById(R.id.result)
 
+        currentGlucose.setText("0")
+        correctionInsulin.setText("0")
         targetGlucose.setText("5")
 
         resultBtn.setOnClickListener {
