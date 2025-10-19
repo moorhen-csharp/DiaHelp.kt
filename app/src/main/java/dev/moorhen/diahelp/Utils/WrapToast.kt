@@ -1,8 +1,9 @@
-package dev.moorhen.diahelp
+package dev.moorhen.diahelp.Utils
 import android.app.Activity
 import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
+import dev.moorhen.diahelp.R
 
 fun Toast.showIncorrectToast(message: String, activity: Activity) {
     val layout = activity.layoutInflater.inflate (
