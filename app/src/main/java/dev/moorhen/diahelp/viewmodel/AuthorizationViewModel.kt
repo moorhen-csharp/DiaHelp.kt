@@ -13,7 +13,8 @@ import kotlinx.coroutines.withContext
 
 class AuthorizationViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: UserRepository
+    private val repository: UserRepository =
+        UserRepository(AppDatabase.getDatabase(application).userDao())
 
     private val _loginResult = MutableLiveData<String>()
     val loginResult: LiveData<String> get() = _loginResult
@@ -21,21 +22,17 @@ class AuthorizationViewModel(application: Application) : AndroidViewModel(applic
     private val _navigateToRegistration = MutableLiveData<Boolean>()
     val navigateToRegistration: LiveData<Boolean> get() = _navigateToRegistration
 
-    init {
-        val dao = AppDatabase.getDatabase(application).userDao()
-        repository = UserRepository(dao)
-    }
-
     fun login(username: String, password: String) {
         viewModelScope.launch {
+
             val user = withContext(Dispatchers.IO) {
                 repository.loginUser(username, password)
             }
 
             if (user != null) {
-                _loginResult.value = "Вход выполнен успешно"
+                _loginResult.postValue("Вход выполнен успешно")
             } else {
-                _loginResult.value = "Неверный логин или пароль"
+                _loginResult.postValue("Неверный логин или пароль")
             }
         }
     }

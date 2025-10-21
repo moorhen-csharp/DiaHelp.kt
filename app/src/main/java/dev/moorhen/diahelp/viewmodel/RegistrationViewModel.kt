@@ -6,18 +6,13 @@ import androidx.lifecycle.viewModelScope
 import dev.moorhen.diahelp.data.db.AppDatabase
 import dev.moorhen.diahelp.data.model.UserModel
 import dev.moorhen.diahelp.repository.UserRepository
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RegistrationViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: UserRepository
-
-    init {
-        val dao = AppDatabase.getDatabase(application).userDao()
-        repository = UserRepository(dao)
-    }
+    private val repository = UserRepository(AppDatabase.getDatabase(application).userDao())
 
     fun registerUser(
         username: String,
@@ -28,24 +23,42 @@ class RegistrationViewModel(application: Application) : AndroidViewModel(applica
         onResult: (Boolean, String) -> Unit
     ) {
         viewModelScope.launch {
+            // Проверяем заполнение
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                onResult(false, "Заполните все поля")
+                return@launch
+            }
+
+            // Проверяем совпадение паролей
             if (password != confirmPassword) {
                 onResult(false, "Пароли не совпадают")
                 return@launch
             }
 
-            val user = UserModel(
+            // Проверяем существующего пользователя
+            val existingUser = withContext(Dispatchers.IO) {
+                repository.getUserByUsernameOrEmail(username, email)
+            }
+
+            if (existingUser != null) {
+                onResult(false, "Пользователь с таким логином или email уже существует")
+                return@launch
+            }
+
+            // Создаем нового пользователя
+            val newUser = UserModel(
                 username = username,
-                password = password,
                 email = email,
+                password = password,
                 coeffInsulin = coeffInsulin
             )
 
-            val success = withContext(Dispatchers.IO) {
-                repository.registerUser(user)
+            // Добавляем пользователя в базу
+            withContext(Dispatchers.IO) {
+                repository.insertUser(newUser)
             }
 
-            if (success) onResult(true, "Регистрация успешна")
-            else onResult(false, "Пользователь уже существует")
+            onResult(true, "Регистрация успешна")
         }
     }
 }

@@ -21,30 +21,23 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         allUsers = repository.getAllUsers()
     }
 
-    fun insert(user: UserModel) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insertUser(user)
-    }
-
-    fun update(user: UserModel) = viewModelScope.launch(Dispatchers.IO) {
-        repository.updateUser(user)
-    }
-
-    fun delete(user: UserModel) = viewModelScope.launch(Dispatchers.IO) {
-        repository.deleteUser(user)
-    }
-
-    fun getUserById(id: Int): LiveData<UserModel> {
-        return repository.getUserById(id)
+    fun registerUser(user: UserModel, onResult: (Boolean, String) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val existing = repository.getUserByUsernameOrEmail(user.username, user.email)
+            if (existing != null) {
+                onResult(false, "Пользователь с таким логином или email уже существует")
+            } else {
+                repository.insertUser(user)
+                onResult(true, "Регистрация успешна")
+            }
+        }
     }
 
     fun login(username: String, password: String, onResult: (Boolean, UserModel?) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val user = repository.loginUser(username, password)
-            if (user != null) {
-                onResult(true, user)
-            } else {
-                onResult(false, null)
-            }
+            if (user != null) onResult(true, user)
+            else onResult(false, null)
         }
     }
 }

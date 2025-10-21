@@ -8,12 +8,10 @@ import java.util.Date
 data class UserModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val username: String,
-    val password: String,
-    val name: String? = null,
-    val lastName: String? = null,
-    val coeffInsulin: Double = 0.0,
-    val email: String,
-    val experience: String? = null,
-    val registrationDate: Date = Date()
+
+    val username: String,             // Логин
+    val email: String,                // Почта
+    val password: String,             // Пароль
+    val coeffInsulin: Double = 0.0,   // Коррекционный инсулин
+    val registrationDate: Date = Date() // Дата регистрации
 )
