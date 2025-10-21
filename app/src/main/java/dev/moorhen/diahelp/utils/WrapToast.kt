@@ -1,4 +1,4 @@
-package dev.moorhen.diahelp.Utils
+package dev.moorhen.diahelp.utils
 import android.app.Activity
 import android.view.Gravity
 import android.widget.TextView

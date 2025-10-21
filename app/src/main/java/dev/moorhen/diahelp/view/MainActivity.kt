@@ -1,4 +1,4 @@
-package dev.moorhen.diahelp.View
+package dev.moorhen.diahelp.view
 
 import android.os.Bundle
 import android.widget.Button
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dev.moorhen.diahelp.R
-import dev.moorhen.diahelp.Utils.showIncorrectToast
+import dev.moorhen.diahelp.utils.showIncorrectToast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

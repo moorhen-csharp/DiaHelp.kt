@@ -12,12 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiaHelp">
         <activity
-            android:name=".View.MainActivity"
+            android:name=".view.MainActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".view.RegistrationActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".View.AuthorizationActivity"
+            android:name=".view.AuthorizationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
