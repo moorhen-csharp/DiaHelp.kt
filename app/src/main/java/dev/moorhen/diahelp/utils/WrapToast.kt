@@ -6,20 +6,21 @@ import android.widget.Toast
 import dev.moorhen.diahelp.R
 
 fun Toast.showIncorrectToast(message: String, activity: Activity) {
-    val layout = activity.layoutInflater.inflate (
+    // 1️⃣ Inflate layout тоста без привязки к корневому view
+    val layout = activity.layoutInflater.inflate(
         R.layout.incorrect_value_toast,
-        activity.findViewById(R.id.toast_container)
+        null
     )
 
-    // Set the text of the TextView of the message
+    // 2️⃣ Устанавливаем текст
     val textView = layout.findViewById<TextView>(R.id.toast_text)
     textView.text = message
 
-    // Use the application extension function
+    // 3️⃣ Применяем кастомный view к Toast
     this.apply {
-        setGravity(Gravity.BOTTOM, 0, 40)
         duration = Toast.LENGTH_LONG
         view = layout
+        setGravity(Gravity.BOTTOM, 0, 40)
         show()
     }
 }

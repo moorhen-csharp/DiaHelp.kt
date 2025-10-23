@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.viewmodel.AuthorizationViewModel
 
@@ -15,6 +15,14 @@ class AuthorizationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // ✅ Автоматический вход
+        if (viewModel.isUserLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
         setContentView(R.layout.activity_authorization)
 
         val loginInput = findViewById<EditText>(R.id.textLogin)
@@ -22,36 +30,36 @@ class AuthorizationActivity : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.btnAuthorization)
         val registerNav = findViewById<TextView>(R.id.tvRegister)
 
-        // Навигация на регистрацию
-        registerNav.setOnClickListener {
-            viewModel.onRegisterClicked()
-        }
+        registerNav.setOnClickListener { viewModel.onRegisterClicked() }
 
-        // Подписка на навигацию
-        viewModel.navigateToRegistration.observe(this, Observer { navigate ->
+        // ✅ Наблюдение за навигацией
+        viewModel.navigateToRegistration.observe(this) { navigate ->
             if (navigate) {
                 startActivity(Intent(this, RegistrationActivity::class.java))
                 viewModel.onNavigatedToRegistration()
             }
-        })
+        }
 
-        // Подписка на результат логина
-        viewModel.loginResult.observe(this, Observer { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        // ✅ Сообщение пользователю
+        viewModel.loginResult.observe(this) { message ->
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
+        }
 
-            if (message == "Вход выполнен успешно") {
+        // ✅ Навигация при успешном входе
+        viewModel.loginSuccess.observe(this) { success ->
+            if (success) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
-        })
+        }
 
-        // Обработка нажатия на кнопку входа
+        // ✅ Кнопка входа
         loginButton.setOnClickListener {
             val username = loginInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
 
             if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Введите логин и пароль", Toast.LENGTH_SHORT).show()
+                Snackbar.make(findViewById(android.R.id.content), "Введите логин и пароль", Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

@@ -45,6 +45,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
 
+    // 🔹 Fragment KTX для viewModels()
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
+
     // 🔹 Room (База данных)
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
@@ -59,3 +62,4 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
