@@ -1,4 +1,4 @@
-package dev.moorhen.diahelp.view
+package dev.moorhen.diahelp.view.activity
 
 import android.os.Bundle
 import androidx.activity.viewModels

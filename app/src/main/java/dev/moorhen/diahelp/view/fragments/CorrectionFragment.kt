@@ -30,6 +30,12 @@ class CorrectionFragment : Fragment() {
         val correctionInsulin = view.findViewById<TextView>(R.id.correction_insulin)
 
         currentGlucose.setText("0")
+        currentGlucose.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus && currentGlucose.text.toString() == "0") {
+                currentGlucose.text.clear()
+            }
+        }
+
         correctionInsulin.setText("0")
         targetGlucose.setText("5")
 
