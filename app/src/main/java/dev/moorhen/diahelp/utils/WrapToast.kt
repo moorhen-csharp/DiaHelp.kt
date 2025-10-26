@@ -18,7 +18,7 @@ fun Toast.showIncorrectToast(message: String, activity: Activity) {
 
     // 3️⃣ Применяем кастомный view к Toast
     this.apply {
-        duration = Toast.LENGTH_LONG
+        duration = Toast.LENGTH_SHORT
         view = layout
         setGravity(Gravity.BOTTOM, 0, 250)
         show()

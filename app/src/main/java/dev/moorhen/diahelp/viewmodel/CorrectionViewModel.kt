@@ -1,20 +1,48 @@
 package dev.moorhen.diahelp.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dev.moorhen.diahelp.data.db.AppDatabase
+import dev.moorhen.diahelp.repository.UserRepository
+import dev.moorhen.diahelp.utils.SessionManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CorrectionViewModel : ViewModel() {
+class CorrectionViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _correctionResult = MutableLiveData<Double>()
-    val correctionResult: LiveData<Double> = _correctionResult
+    private val userRepository = UserRepository(AppDatabase.getDatabase(application).userDao())
+    private val sessionManager = SessionManager(application)
 
-    // Коэффициент чувствительности к инсулину (например, 1 ед. снижает на 2 ммоль)
-    private val insulinSensitivity = 2.0
+    private val _correctionResult = MutableLiveData<String>()
+    val correctionResult: LiveData<String> = _correctionResult
 
-    fun calculateCorrection(currentGlucose: Double, targetGlucose: Double) {
-        val difference = currentGlucose - targetGlucose
-        val correction = if (difference > 0) difference / insulinSensitivity else 0.0
-        _correctionResult.value = correction
+    fun calculateInsulin(currentGlucose: Double, targetGlucose: Double) {
+        viewModelScope.launch {
+            val username = sessionManager.getUsername() ?: run {
+                return@launch
+            }
+
+            val user = withContext(Dispatchers.IO) {
+                userRepository.getUserByUsernameOrEmail(username, username)
+            }
+
+            if (user == null) {
+                return@launch
+            }
+
+            if (currentGlucose <= 0 || targetGlucose <= 0) {
+                return@launch
+            }
+
+            val coeffInsulin = if (user.coeffInsulin > 0) user.coeffInsulin else 2.0
+            val correction = (currentGlucose - targetGlucose) / coeffInsulin
+            val finalValue = if (correction < 0) 0.0 else correction
+
+            _correctionResult.postValue("%.1f".format(finalValue))
+        }
     }
 }

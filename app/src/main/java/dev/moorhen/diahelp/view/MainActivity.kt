@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.view.fragments.CorrectionFragment
+import dev.moorhen.diahelp.view.fragments.ProfileFragment
 import dev.moorhen.diahelp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_correction -> {
                     openFragment(CorrectionFragment())
+                    true
+                }
+                R.id.navigation_profile -> {
+                    openFragment(ProfileFragment())
                     true
                 }
                 else -> {

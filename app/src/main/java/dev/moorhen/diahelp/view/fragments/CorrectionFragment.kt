@@ -35,7 +35,7 @@ class CorrectionFragment : Fragment() {
 
         // Наблюдение за результатом расчёта
         viewModel.correctionResult.observe(viewLifecycleOwner) { result ->
-            correctionInsulin.text = "%.1f".format(result)
+            correctionInsulin.text = result
         }
 
         // Кнопка "Рассчитать"
@@ -44,7 +44,7 @@ class CorrectionFragment : Fragment() {
             val target = targetGlucose.text.toString().toDoubleOrNull()
 
             if (current != null && target != null && current > 0 && target > 0) {
-                viewModel.calculateCorrection(current, target)
+                viewModel.calculateInsulin(current, target)
             } else {
                 Toast(requireContext()).showIncorrectToast("Некорректное значение!", requireActivity())
             }
