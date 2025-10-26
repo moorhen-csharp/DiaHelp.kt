@@ -15,7 +15,6 @@ import dev.moorhen.diahelp.viewmodel.CorrectionViewModel
 import dev.moorhen.diahelp.utils.showIncorrectToast
 
 class CorrectionFragment : Fragment() {
-
     private val viewModel: CorrectionViewModel by viewModels()
 
     override fun onCreateView(

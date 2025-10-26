@@ -20,7 +20,7 @@ fun Toast.showIncorrectToast(message: String, activity: Activity) {
     this.apply {
         duration = Toast.LENGTH_LONG
         view = layout
-        setGravity(Gravity.BOTTOM, 0, 40)
+        setGravity(Gravity.BOTTOM, 0, 250)
         show()
     }
 }
