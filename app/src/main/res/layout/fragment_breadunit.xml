@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-
         android:orientation="vertical"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,12 +26,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvCurrentGlucose"
+                android:id="@+id/tvCarbohydrates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginStart="10dp"
-                android:text="Текущий уровень глюкозы:"
+                android:text="Углеводы в 100г продукта:"
                 android:textColor="#888992"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -41,11 +40,10 @@
                 tools:ignore="HardcodedText" />
 
             <EditText
-                android:id="@+id/current_glucose"
+                android:id="@+id/Carbohydrates"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="60dp"
-
                 android:background="@drawable/shape_rounded_containers"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,12 +62,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvTargetGlucose"
+                android:id="@+id/tvProductWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginStart="10dp"
-                android:text="Целевой уровень глюкозы:"
+                android:text="Вес продукта:"
                 android:textColor="#888992"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +76,7 @@
                 tools:ignore="HardcodedText" />
 
             <EditText
-                android:id="@+id/target_glucose"
+                android:id="@+id/ProductWeight"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="60dp"
@@ -94,7 +92,7 @@
     </LinearLayout>
 
     <android.widget.Button
-        android:id="@+id/result"
+        android:id="@+id/resultBU"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -116,15 +114,15 @@
         android:background="@drawable/shape_rounded_containers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result">
+        app:layout_constraintTop_toBottomOf="@+id/resultBU">
 
         <TextView
-            android:id="@+id/tvCorretionInsulin"
+            android:id="@+id/tvCurrentValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:text="Коррекционный инсулин:"
+            android:text="Количество хлебных единиц:   "
             android:textColor="#888992"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +131,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/correction_insulin"
+            android:id="@+id/CurrentValue"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="60dp"

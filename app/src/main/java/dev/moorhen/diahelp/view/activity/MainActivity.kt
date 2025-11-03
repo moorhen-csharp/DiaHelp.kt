@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.moorhen.diahelp.R
+import dev.moorhen.diahelp.view.fragments.BreadUnitFragment
 import dev.moorhen.diahelp.view.fragments.CorrectionFragment
 import dev.moorhen.diahelp.view.fragments.ProfileFragment
 import dev.moorhen.diahelp.viewmodel.MainViewModel
@@ -35,6 +36,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_profile -> {
                     openFragment(ProfileFragment())
+                    true
+                }
+                R.id.navigation_breadunit -> {
+                    openFragment(BreadUnitFragment())
                     true
                 }
                 else -> {

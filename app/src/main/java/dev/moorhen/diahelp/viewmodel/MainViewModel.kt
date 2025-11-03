@@ -1,11 +1,12 @@
 package dev.moorhen.diahelp.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import dev.moorhen.diahelp.R
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _selectedFragment = MutableLiveData<Int>()
     val selectedFragment: LiveData<Int> get() = _selectedFragment
