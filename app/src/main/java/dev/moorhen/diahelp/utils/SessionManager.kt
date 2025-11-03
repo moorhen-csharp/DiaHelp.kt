@@ -21,6 +21,8 @@ class SessionManager(context: Context) {
         }
     }
 
+
+
     fun getUsername(): String? = prefs.getString(KEY_USERNAME, null)
     fun getEmail(): String? = prefs.getString(KEY_EMAIL, null)
 
