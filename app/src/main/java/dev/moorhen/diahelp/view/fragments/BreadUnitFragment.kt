@@ -58,14 +58,16 @@ class BreadUnitFragment : Fragment() {
             if (carbs == null || weight == null || carbs <= 0 || weight <= 0 ) {
                 Toast(requireContext()).showIncorrectToast("Некорректное значение!", requireActivity())
                 return@setOnClickListener
+            }else{
+                viewModel.calculateBU(carbs,weight )
             }
-
-            val result = ((carbs * weight) / 100) / 12
-
-            currentValue.text = String.format("%.1f", result)
 
             carbohydrates.setText("0")
             productWeight.setText("0")
+        }
+
+        viewModel.calcResult.observe(viewLifecycleOwner) { result ->
+            currentValue.text = result
         }
 
         return view
