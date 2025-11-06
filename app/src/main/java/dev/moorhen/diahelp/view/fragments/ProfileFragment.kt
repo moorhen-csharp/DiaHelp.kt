@@ -31,18 +31,15 @@ class ProfileFragment : Fragment() {
         val userEmail = view.findViewById<TextView>(R.id.tvUserEmail)
         val logoutButton = view.findViewById<Button>(R.id.btnLogout)
         val themeSwitch = view.findViewById<Switch>(R.id.themeSwitch)
-        val coeff = view.findViewById<TextView>(R.id.tvUserCoeffIns)
 
-        // Загружаем текущую тему из SharedPreferences
         val isDarkMode = viewModel.isDarkThemeEnabled(requireContext())
         themeSwitch.isChecked = isDarkMode
 
-        // 🛠️ Блокируем передачу клика нижней навигации
         themeSwitch.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 v.parent.requestDisallowInterceptTouchEvent(true)
             }
-            false // возвращаем false, чтобы Switch всё равно сработал
+            false
         }
 
         // 🎨 Переключение темы

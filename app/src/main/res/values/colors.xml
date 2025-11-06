@@ -4,5 +4,10 @@
     <color name="my_dark_primary">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="my_light_primary">#FFFFFFFF</color>
+    <color name="tab_selected">#000000</color>
+    <color name="tab_unselected">#808080</color>
+    <color name="color_bottomNavMenu">#FFFFFF</color>
+
+
 
 </resources>

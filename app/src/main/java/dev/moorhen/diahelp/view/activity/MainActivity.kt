@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.moorhen.diahelp.R
-import dev.moorhen.diahelp.view.fragments.BreadUnitFragment
-import dev.moorhen.diahelp.view.fragments.CorrectionFragment
+import dev.moorhen.diahelp.view.fragments.CalculatorContainerFragment
 import dev.moorhen.diahelp.view.fragments.ProfileFragment
 import dev.moorhen.diahelp.viewmodel.MainViewModel
 
@@ -26,39 +25,28 @@ class MainActivity : AppCompatActivity() {
             if (isDarkTheme) AppCompatDelegate.MODE_NIGHT_YES
             else AppCompatDelegate.MODE_NIGHT_NO
         )
-
         setContentView(R.layout.activity_main)
 
         bottomNav = findViewById(R.id.bottomNavigationView)
 
-        // Загружаем фрагмент по умолчанию
         if (savedInstanceState == null) {
-            openFragment(CorrectionFragment())
+            openFragment(CalculatorContainerFragment())
         }
 
-        // Подписка на выбор элемента нижней панели
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_correction -> {
-                    openFragment(CorrectionFragment())
+                    openFragment(CalculatorContainerFragment())
                     true
                 }
                 R.id.navigation_profile -> {
                     openFragment(ProfileFragment())
                     true
                 }
-                R.id.navigation_breadunit -> {
-                    openFragment(BreadUnitFragment())
-                    true
-                }
-                else -> {
-                    // временно игнорируем другие кнопки
-                    false
-                }
+                else -> false
             }
         }
 
-        // Выделяем пункт меню "Коррекция"
         bottomNav.selectedItemId = R.id.navigation_correction
     }
 
