@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             if (isDarkTheme) AppCompatDelegate.MODE_NIGHT_YES
             else AppCompatDelegate.MODE_NIGHT_NO
         )
+
         setContentView(R.layout.activity_main)
 
         bottomNav = findViewById(R.id.bottomNavigationView)
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             openFragment(CalculatorContainerFragment())
         }
+
+        bottomNav.selectedItemId = R.id.navigation_correction
+
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -47,7 +51,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        bottomNav.selectedItemId = R.id.navigation_correction
     }
 
     private fun openFragment(fragment: Fragment) {
