@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.selectedItemId = R.id.navigation_correction
 
-
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_correction -> {
