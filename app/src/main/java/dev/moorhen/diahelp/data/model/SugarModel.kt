@@ -13,5 +13,4 @@ data class SugarModel (
     val HealthType: String,
     val InsulinDose: Int,
     val Date: Date = Date()
-
 )
