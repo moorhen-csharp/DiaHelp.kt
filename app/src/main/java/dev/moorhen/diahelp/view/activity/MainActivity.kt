@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             openFragment(CalculatorContainerFragment())
         }
 
-        bottomNav.selectedItemId = R.id.navigation_correction
+        bottomNav.selectedItemId = R.id.navigation_sugarnote
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
