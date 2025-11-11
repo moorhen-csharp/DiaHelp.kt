@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.view.fragments.CalculatorContainerFragment
 import dev.moorhen.diahelp.view.fragments.ProfileFragment
+import dev.moorhen.diahelp.view.fragments.SugarNoteFragment
 import dev.moorhen.diahelp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -46,10 +47,13 @@ class MainActivity : AppCompatActivity() {
                     openFragment(ProfileFragment())
                     true
                 }
+                R.id.navigation_sugarnote ->{
+                    openFragment(SugarNoteFragment())
+                    true
+                }
                 else -> false
             }
         }
-
     }
 
     private fun openFragment(fragment: Fragment) {
