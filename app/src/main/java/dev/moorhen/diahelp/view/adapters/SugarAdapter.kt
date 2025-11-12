@@ -32,12 +32,16 @@ class SugarAdapter(private var items: List<SugarModel>) :
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
 
         holder.textDate.text = formatter.format(item.Date)
+
         holder.textSugar.text =
             if (item.SugarLevel == -1.0) "Сахар: не измерял" else "Сахар: ${item.SugarLevel} ммоль/л"
+
         holder.textInsulin.text =
             if (item.InsulinDose == -1.0) "Инсулин: не вводил" else "Инсулин: ${item.InsulinDose} ед."
+
         holder.textType.text = item.MeasurementTime
-        holder.textHealth.text = item.HealthType
+
+        holder.textHealth.text = "${item.HealthType} самочувствие"
     }
 
     override fun getItemCount(): Int = items.size
