@@ -40,6 +40,7 @@ class SugarNoteViewModel(private val repository: SugarRepository, app: Applicati
             val endDate = Date()
             val startDate = when (selectedPeriod.value) {
                 "1 День" -> Date(endDate.time - 86400000L)
+                "Неделя" -> Date(endDate.time - 7L * 86400000L)
                 "3 Месяца" -> Date(endDate.time - 90L * 86400000L)
                 "6 Месяцев" -> Date(endDate.time - 180L * 86400000L)
                 "1 Год" -> Date(endDate.time - 365L * 86400000L)

@@ -49,7 +49,6 @@ class SugarEntryViewModel(private val repository: SugarRepository, app: Applicat
 
         viewModelScope.launch {
             repository.insert(note)
-            Toast.makeText(ctx, "Запись сохранена", Toast.LENGTH_SHORT).show()
         }
 
         return true
