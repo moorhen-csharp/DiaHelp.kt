@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav = findViewById(R.id.bottomNavigationView)
 
         if (savedInstanceState == null) {
-            openFragment(CalculatorContainerFragment())
+            openFragment(SugarNoteFragment())
         }
 
         bottomNav.selectedItemId = R.id.navigation_sugarnote

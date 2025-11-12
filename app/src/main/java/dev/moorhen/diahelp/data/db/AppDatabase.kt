@@ -5,14 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import dev.moorhen.diahelp.data.dao.SugarDao
 import dev.moorhen.diahelp.data.model.UserModel
+import dev.moorhen.diahelp.data.model.SugarModel
 import dev.moorhen.diahelp.util.Converters
 
-@Database(entities = [UserModel::class], version = 1, exportSchema = false)
+@Database(
+    entities = [UserModel::class, SugarModel::class], // ✅ добавили SugarModel
+    version = 2, // 🔺 увеличь версию БД, чтобы Room пересоздал таблицы
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun sugarDao(): SugarDao // ✅ добавили DAO для сахара
 
     companion object {
         @Volatile
@@ -24,7 +31,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "diahelp_db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration() // 🔹 чтобы не крашилось при смене version
+                    .build()
                 INSTANCE = instance
                 instance
             }

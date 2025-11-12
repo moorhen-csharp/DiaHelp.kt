@@ -4,13 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.Date
 
-@Entity(tableName = "sugars")
+@Entity(tableName = "sugar_note")
 data class SugarModel (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val SugarLevel: Double,
     val MeasurementTime: String,
     val HealthType: String,
-    val InsulinDose: Int,
+    val InsulinDose: Double,
     val Date: Date = Date()
 )
