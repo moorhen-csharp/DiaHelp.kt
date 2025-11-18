@@ -42,6 +42,11 @@ class CorrectionFragment : Fragment() {
         correctionInsulin.setText("0")
         targetGlucose.setText("5")
 
+        // Наблюдение за результатом расчёта
+        viewModel.correctionResult.observe(viewLifecycleOwner) { result ->
+            correctionInsulin.text = result
+        }
+
         // Кнопка "Рассчитать"
         calculateButton.setOnClickListener {
             val current = currentGlucose.text.toString().toDoubleOrNull()
@@ -54,10 +59,7 @@ class CorrectionFragment : Fragment() {
             }
         }
 
-        // Наблюдение за результатом расчёта
-        viewModel.correctionResult.observe(viewLifecycleOwner) { result ->
-            correctionInsulin.text = result
-        }
+
 
         return view
     }

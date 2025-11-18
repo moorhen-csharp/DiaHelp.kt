@@ -22,27 +22,29 @@ class CorrectionViewModel(application: Application) : AndroidViewModel(applicati
 
     fun calculateInsulin(currentGlucose: Double, targetGlucose: Double) {
         viewModelScope.launch {
-            val username = sessionManager.getUsername() ?: run {
-                return@launch
-            }
 
+            // 1️⃣ Пытаемся получить имя пользователя
+            val username = sessionManager.getUsername()
+
+            // 2️⃣ Пытаемся получить пользователя из БД (если не найден — user = null)
             val user = withContext(Dispatchers.IO) {
-                userRepository.getUserByUsernameOrEmail(username, username)
+                if (username != null)
+                    userRepository.getUserByUsernameOrEmail(username, username)
+                else null
             }
 
-            if (user == null) {
-                return@launch
-            }
+            // 3️⃣ Берём коэффициент инсулина
+            // если пользователь найден → берем его коэффициент
+            // если нет → берем 2.0
+            val coeffInsulin = user?.coeffInsulin?.takeIf { it > 0 } ?: 2.0
 
-            if (currentGlucose <= 0 || targetGlucose <= 0) {
-                return@launch
-            }
-
-            val coeffInsulin = if (user.coeffInsulin > 0) user.coeffInsulin else 2.0
+            // 4️⃣ Выполняем расчёт
             val correction = (currentGlucose - targetGlucose) / coeffInsulin
             val finalValue = if (correction < 0) 0.0 else correction
 
+            // 5️⃣ Обновляем LiveData
             _correctionResult.postValue("%.1f".format(finalValue))
         }
     }
 }
+
