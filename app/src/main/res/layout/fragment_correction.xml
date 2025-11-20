@@ -97,7 +97,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:text="Рассчитать"
-        android:textColor="@color/black"
+        android:textColor="@color/color_text_button"
         android:textAllCaps="false"
         android:background="@drawable/shape_button_footer"
         android:backgroundTint="@color/color_button"

@@ -4,7 +4,7 @@
     <color name="tab_unselected">#808080</color>
     <color name="color_bottomNavMenu">#000000</color>
     <color name="color_button">#FF8C00</color>
+    <color name="color_button_logout">#FF0000</color>
     <color name="color_avgBackground">#10182d</color>
-
-
+    <color name="color_text_button">#FFFFFFFF</color>
 </resources>

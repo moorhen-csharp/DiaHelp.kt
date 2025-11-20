@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +33,7 @@ class SugarNoteFragment : Fragment() {
 
         // 🔹 UI элементы
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerReadings)
-        val btnAddData = view.findViewById<MaterialButton>(R.id.btnAddData)
+        val btnAddData = view.findViewById<ImageButton>(R.id.btnAddData)
         val btnClear = view.findViewById<MaterialButton>(R.id.btnClear)
         val dropdown = view.findViewById<AutoCompleteTextView>(R.id.periodDropdown)
         val avgText = view.findViewById<TextView>(R.id.textAverage)

@@ -70,6 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
+                android:textColor="@color/color_text_button"
                 android:backgroundTint="@color/color_button"
                 android:text="Очистить" />
         </LinearLayout>
@@ -133,13 +134,13 @@
 
 
     <!-- Кнопка "Ввести данные" -->
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btnAddData"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:icon="@drawable/ic_plus"
-        android:backgroundTint="@color/color_button"
-        app:cornerRadius="50dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button"
+        android:src="@drawable/ic_plus"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
