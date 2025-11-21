@@ -11,4 +11,5 @@
     <color name="color_button_logout">#FF0000</color>
     <color name="color_avgBackground">#dbfbfa</color>
     <color name="color_text_button">#FFFFFFFF</color>
+    <color name="color_shape_rounded_containers">#000000</color>
 </resources>
