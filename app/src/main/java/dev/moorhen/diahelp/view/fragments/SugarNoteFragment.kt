@@ -31,17 +31,23 @@ class SugarNoteFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_sugarnote, container, false)
 
+
         // 🔹 UI элементы
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerReadings)
         val btnAddData = view.findViewById<ImageButton>(R.id.btnAddData)
         val btnClear = view.findViewById<MaterialButton>(R.id.btnClear)
         val dropdown = view.findViewById<AutoCompleteTextView>(R.id.periodDropdown)
         val avgText = view.findViewById<TextView>(R.id.textAverage)
+        val noDataText = view.findViewById<TextView>(R.id.tvNoData)
 
         // 🔹 Инициализация ViewModel
         val repository = SugarRepository(requireContext())
         val factory = SugarNoteViewModelFactory(repository, requireActivity().application)
         viewModel = ViewModelProvider(this, factory)[SugarNoteViewModel::class.java]
+
+        viewModel.isEmpty.observe(viewLifecycleOwner) { isEmpty ->
+            noDataText.visibility = if (isEmpty) View.VISIBLE else View.GONE
+        }
 
         // 🔹 Настраиваем RecyclerView
         adapter = SugarAdapter(emptyList())
