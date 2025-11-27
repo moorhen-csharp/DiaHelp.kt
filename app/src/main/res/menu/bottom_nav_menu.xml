@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+    android:id="@+id/navigation_medical_indications"
+    android:icon="@drawable/ic_medical_indications"
+    android:title="Показания"/>
+
+    <item
         android:id="@+id/navigation_correction"
         android:icon="@drawable/ic_calculator"
         android:title="Коррекция" />

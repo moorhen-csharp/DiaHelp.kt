@@ -15,7 +15,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         _selectedFragment.value = menuItemId
     }
 
-    // По умолчанию открываем "Главная"
     init {
         _selectedFragment.value = R.id.navigation_correction
     }

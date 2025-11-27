@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.view.fragments.CalculatorContainerFragment
+import dev.moorhen.diahelp.view.fragments.MedicalIndicationsFragment
 import dev.moorhen.diahelp.view.fragments.ProfileFragment
 import dev.moorhen.diahelp.view.fragments.SugarNoteFragment
 import dev.moorhen.diahelp.viewmodel.MainViewModel
@@ -49,6 +50,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_sugarnote ->{
                     openFragment(SugarNoteFragment())
+                    true
+                }
+                R.id.navigation_medical_indications ->{
+                    openFragment(MedicalIndicationsFragment())
                     true
                 }
                 else -> false
