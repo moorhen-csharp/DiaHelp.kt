@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:text="Количество хлебных единиц:   "
+            android:text="Количество ХЕ:   "
             android:textColor="#888992"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
