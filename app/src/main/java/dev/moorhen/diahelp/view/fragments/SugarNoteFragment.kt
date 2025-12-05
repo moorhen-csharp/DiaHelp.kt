@@ -40,6 +40,7 @@ class SugarNoteFragment : Fragment() {
         val avgText = view.findViewById<TextView>(R.id.textAverage)
         val noDataText = view.findViewById<TextView>(R.id.tvNoData)
 
+
         // 🔹 Инициализация ViewModel
         val repository = SugarRepository(requireContext())
         val factory = SugarNoteViewModelFactory(repository, requireActivity().application)
@@ -55,7 +56,7 @@ class SugarNoteFragment : Fragment() {
         recycler.adapter = adapter
 
         // 🔹 Настраиваем выпадающий список периодов
-        val periods = listOf("1 День","1 Неделя", "3 Месяца", "6 Месяцев", "1 Год")
+        val periods = listOf("1 День", "1 Неделя", "1 Месяц", "3 Месяца", "6 Месяцев", "1 Год")
         val adapterDropdown = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, periods)
         dropdown.setAdapter(adapterDropdown)
 

@@ -8,4 +8,11 @@
     <color name="color_avgBackground">#10182d</color>
     <color name="color_text_button">#FFFFFFFF</color>
     <color name="color_shape_rounded_containers">#FFFFFF</color>
+
+    <color name="grayNeutral">#999999</color>
+    <color name="blueLow">#42A5F5</color>
+    <color name="greenNormal">#4CAF50</color>
+    <color name="yellowWarning">#FFCA28</color>
+    <color name="redHigh">#EF5350</color>
+
 </resources>
