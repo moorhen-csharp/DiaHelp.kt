@@ -1,13 +1,16 @@
 package dev.moorhen.diahelp.view.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,8 +82,38 @@ class SugarNoteFragment : Fragment() {
 
         // 🔹 Кнопка "Очистить"
         btnClear.setOnClickListener {
-            viewModel.clearNotes()
+
+            // загружаем кастомный layout диалога
+            val dialogView = layoutInflater.inflate(R.layout.dialog_clear_list, null)
+
+            // создаём диалог
+            val dialog = AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .create()
+
+            // ➤ ДЕЛАЕТ СКРУГЛЁННЫЕ КРАЯ В ЛЮБОЙ ТЕМЕ
+            dialog.window?.setBackgroundDrawable(
+                ContextCompat.getDrawable(requireContext(), R.drawable.shape_dialog_containers)
+            )
+
+            dialog.show()
+
+            // кнопки диалога
+            val btnOk = dialogView.findViewById<Button>(R.id.btnOk)
+            val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+            btnOk.setOnClickListener {
+                viewModel.clearNotes()
+                dialog.dismiss()
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
         }
+
+
+
 
         // 🔹 Кнопка "Добавить данные"
         btnAddData.setOnClickListener {
@@ -96,6 +129,25 @@ class SugarNoteFragment : Fragment() {
 
         return view
     }
+    private fun showClearConfirmationDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_clear_list, null)
+        val dialog = AlertDialog.Builder(requireContext()).setView(dialogView).create()
+
+        val btnOk = dialogView.findViewById<Button>(R.id.btnOk)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+        btnOk.setOnClickListener {
+            viewModel.clearNotes()
+            dialog.dismiss()
+        }
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
 
     override fun onResume() {
         super.onResume()

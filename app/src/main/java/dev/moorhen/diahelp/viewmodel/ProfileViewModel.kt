@@ -21,6 +21,10 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     fun getUserName(): String = sessionManager.getUsername() ?: "Неизвестно"
     fun getUserEmail(): String = sessionManager.getEmail() ?: "Нет данных"
+    fun getUserCoeffInsulin(): Double {
+        return sessionManager.getCoeffInsulin()
+    }
+
 
     fun saveThemePreference(context: Context, isDark: Boolean) {
         val prefs = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)

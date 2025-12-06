@@ -33,7 +33,8 @@ class AuthorizationViewModel(application: Application) : AndroidViewModel(applic
             }
 
             if (user != null) {
-                sessionManager.saveUser(user.username, user.email)
+                sessionManager.saveUser(user.username, user.email, user.coeffInsulin)
+
                 _loginSuccess.postValue(true)
                 _loginResult.postValue("Вход выполнен успешно")
             } else {
