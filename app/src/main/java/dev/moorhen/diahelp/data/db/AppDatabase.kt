@@ -19,7 +19,8 @@ import dev.moorhen.diahelp.util.Converters
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
-    abstract fun sugarDao(): SugarDao // ✅ добавили DAO для сахара
+    abstract fun sugarDao(): SugarDao
+    abstract fun correctionDao(): CorrectionDao
 
     companion object {
         @Volatile
