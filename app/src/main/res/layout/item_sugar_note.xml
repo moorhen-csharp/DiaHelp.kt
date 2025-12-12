@@ -20,7 +20,7 @@
         android:id="@+id/textSugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6.2 ммоль/л"
+        android:text="11 ммоль/л"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="?attr/colorOnSurface" />
@@ -28,7 +28,7 @@
         android:id="@+id/textInsulin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6.2 ммоль/л"
+        android:text="Инсулин: 3.0 ед"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="?attr/colorOnSurface" />
@@ -45,7 +45,7 @@
         android:id="@+id/textHealth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Хорошее"
+        android:text="Хорошее самочувствие"
         android:textSize="14sp"
         android:textColor="?attr/colorOnSurfaceVariant" />
 </LinearLayout>

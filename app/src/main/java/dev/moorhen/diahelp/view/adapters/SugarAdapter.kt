@@ -47,6 +47,7 @@ class SugarAdapter(private var items: List<SugarModel>) :
             else "Инсулин: ${item.InsulinDose} ед."
 
         holder.textType.text = item.MeasurementTime
+
         holder.textHealth.text = "${item.HealthType} самочувствие"
 
 
@@ -54,8 +55,8 @@ class SugarAdapter(private var items: List<SugarModel>) :
 
         val color = when {
             sugar == -1.0 -> ContextCompat.getColor(ctx, R.color.grayNeutral)
-            sugar < 3.5 -> ContextCompat.getColor(ctx, R.color.blueLow)      // Гипо
-            sugar < 7.0 -> ContextCompat.getColor(ctx, R.color.greenNormal)  // Норма
+            sugar <= 4.5 -> ContextCompat.getColor(ctx, R.color.blueLow)      // Гипо
+            sugar <= 7.0 -> ContextCompat.getColor(ctx, R.color.greenNormal)  // Норма
             sugar < 10.0 -> ContextCompat.getColor(ctx, R.color.yellowWarning) // Повышен
             else -> ContextCompat.getColor(ctx, R.color.redHigh)             // Высокий
         }

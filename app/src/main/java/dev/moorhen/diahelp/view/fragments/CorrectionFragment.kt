@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dev.moorhen.diahelp.R
@@ -16,6 +17,8 @@ import dev.moorhen.diahelp.utils.showIncorrectToast
 
 class CorrectionFragment : Fragment() {
     private val viewModel: CorrectionViewModel by viewModels()
+
+    // В CorrectionFragment.kt
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +33,6 @@ class CorrectionFragment : Fragment() {
         val correctionInsulin = view.findViewById<TextView>(R.id.correction_insulin)
 
         currentGlucose.setText("0")
-
         currentGlucose.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus && currentGlucose.text.toString() == "0") {
                 currentGlucose.text.clear()
@@ -42,12 +44,15 @@ class CorrectionFragment : Fragment() {
         correctionInsulin.setText("0")
         targetGlucose.setText("5")
 
-        // Наблюдение за результатом расчёта
         viewModel.correctionResult.observe(viewLifecycleOwner) { result ->
             correctionInsulin.text = result
         }
 
-        // Кнопка "Рассчитать"
+        // 👇 Наблюдаем за событием показа диалога
+        viewModel.showDialog.observe(viewLifecycleOwner) { (sugarLevel, insulinDose) ->
+            showSaveConfirmationDialog(sugarLevel, insulinDose)
+        }
+
         calculateButton.setOnClickListener {
             val current = currentGlucose.text.toString().toDoubleOrNull()
             val target = targetGlucose.text.toString().toDoubleOrNull()
@@ -59,8 +64,32 @@ class CorrectionFragment : Fragment() {
             }
         }
 
-
-
         return view
+    }
+
+    // 👇 Новая функция для отображения диалога
+    private fun showSaveConfirmationDialog(sugarLevel: Double, insulinDose: Double) {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_correction_insulin, null)
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.window?.setBackgroundDrawable(
+            ContextCompat.getDrawable(requireContext(), R.drawable.shape_dialog_containers)
+        )
+
+        dialogView.findViewById<Button>(R.id.btnOk).setOnClickListener {
+            viewModel.saveSugarNote(sugarLevel, insulinDose)
+            Toast.makeText(requireContext(), "Запись сохранена", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<Button>(R.id.btnCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

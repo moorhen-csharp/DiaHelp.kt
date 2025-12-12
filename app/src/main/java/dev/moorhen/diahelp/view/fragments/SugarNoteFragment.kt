@@ -129,25 +129,6 @@ class SugarNoteFragment : Fragment() {
 
         return view
     }
-    private fun showClearConfirmationDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_clear_list, null)
-        val dialog = AlertDialog.Builder(requireContext()).setView(dialogView).create()
-
-        val btnOk = dialogView.findViewById<Button>(R.id.btnOk)
-        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
-
-        btnOk.setOnClickListener {
-            viewModel.clearNotes()
-            dialog.dismiss()
-        }
-
-        btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
-
 
     override fun onResume() {
         super.onResume()
