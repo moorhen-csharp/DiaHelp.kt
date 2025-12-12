@@ -36,7 +36,6 @@ class SugarEntryFragment : Fragment() {
         val healthGroup = view.findViewById<com.google.android.material.chip.ChipGroup>(R.id.chipHealth)
         val btnNotMeasured = view.findViewById<MaterialButton>(R.id.btnNotMeasured)
         val btnSave = view.findViewById<MaterialButton>(R.id.btnSave)
-        val btnBack = view.findViewById<MaterialButton>(R.id.btnBack)
 
         // ✅ обработчики выбора типа сахара и самочувствия
         sugarTypeGroup.setOnCheckedChangeListener { group, checkedId ->
@@ -62,11 +61,6 @@ class SugarEntryFragment : Fragment() {
 
             val success = viewModel.saveNote()
             if (success) parentFragmentManager.popBackStack()
-        }
-
-        // ✅ Назад
-        btnBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
         }
 
         return view

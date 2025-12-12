@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt") // 🔹 Добавляем поддержку аннотаций для Room
+    id("kotlin-kapt") //Добавляем поддержку аннотаций для Room
 }
 
 android {
@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    // 🔹 Базовые библиотеки Android
+    //Базовые библиотеки Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -45,19 +45,21 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
 
-    // 🔹 Fragment KTX для viewModels()
+    //Health Connect
+
+    //Fragment KTX для viewModels()
     implementation("androidx.fragment:fragment-ktx:1.6.0")
 
-    // 🔹 Room (База данных)
+    //Room (База данных)
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 
-    // 🔹 Lifecycle (ViewModel и LiveData)
+    //Lifecycle (ViewModel и LiveData)
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
 
-    // 🔹 Тесты
+    //Тесты
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

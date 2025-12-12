@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.viewmodel.CorrectionViewModel
 import dev.moorhen.diahelp.utils.showIncorrectToast
+import dev.moorhen.diahelp.utils.showSuccessToast
 
 class CorrectionFragment : Fragment() {
     private val viewModel: CorrectionViewModel by viewModels()
@@ -82,7 +83,7 @@ class CorrectionFragment : Fragment() {
 
         dialogView.findViewById<Button>(R.id.btnOk).setOnClickListener {
             viewModel.saveSugarNote(sugarLevel, insulinDose)
-            Toast.makeText(requireContext(), "Запись сохранена", Toast.LENGTH_SHORT).show()
+            Toast(requireContext()).showSuccessToast("Запись сохранена!", requireActivity())
             dialog.dismiss()
         }
 

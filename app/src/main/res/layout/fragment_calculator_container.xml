@@ -24,7 +24,7 @@
         android:padding="10dp"
         android:clipToPadding="false"
         android:clipChildren="false"
-        android:background="@drawable/shape_rounded_containers"
+
         android:nestedScrollingEnabled="false" />
 
 </LinearLayout>

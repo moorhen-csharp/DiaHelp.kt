@@ -16,7 +16,7 @@
         android:background="@drawable/shape_rounded_containers"
         android:backgroundTint="@color/color_avgBackground"
         android:orientation="vertical"
-        android:padding="12dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/color_TextInputLayout"
+            app:hintTextColor="@color/color_TextInputLayout"
+            app:startIconTint="@color/color_TextInputLayout"
+            app:endIconTint="@color/color_TextInputLayout">
 
             <AutoCompleteTextView
                 android:id="@+id/periodDropdown"
@@ -35,8 +39,8 @@
                 android:backgroundTint="@android:color/transparent"
                 android:hint="Выберите период"
                 android:inputType="none"
-                android:textColor="?attr/colorOnBackground"
-                android:textColorHint="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/color_TextInputLayout"
+                android:textColorHint="@color/color_TextInputLayout" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -52,6 +56,7 @@
             android:id="@+id/textAverage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:textColor="?attr/colorOnBackground"
             android:textSize="24sp"

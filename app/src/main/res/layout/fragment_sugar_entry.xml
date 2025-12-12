@@ -14,18 +14,6 @@
         android:clipToPadding="false"
         android:clipChildren="false">
 
-        <!-- Кнопка Назад -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBack"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Назад"
-            android:textColor="@color/color_text_button"
-            android:backgroundTint="@color/color_button"
-            app:cornerRadius="16dp"
-            android:layout_marginBottom="16dp" />
-
         <!-- Карточка: Уровень сахара -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
