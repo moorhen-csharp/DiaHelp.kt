@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_sugarnote"
         android:icon="@drawable/ic_sugar_note"
-        android:title="Сахара" />
+        android:title="Дневник" />
 
     <item
         android:id="@+id/navigation_profile"

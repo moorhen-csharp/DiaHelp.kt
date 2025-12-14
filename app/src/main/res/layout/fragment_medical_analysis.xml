@@ -1,114 +1,378 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Анализ крови"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Гликированный гемоглобин (HbA1c)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Анализ крови"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C-пептид"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <!-- Гликированный гемоглобин -->
+        <TextView
+            android:id="@+id/hba1cLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Гликированный гемоглобин (HbA1c)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/titleText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/hba1cInput" />
 
+        <EditText
+            android:id="@+id/hba1cInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/hba1cLabel"
+            app:layout_constraintBottom_toBottomOf="@id/hba1cLabel"
+            app:layout_constraintStart_toEndOf="@id/hba1cLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Гемоглобин"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        <!-- C-пептид -->
+        <TextView
+            android:id="@+id/cpeptideLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="C-пептид"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/hba1cLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cpeptideInput" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Лейкоциты"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        <EditText
+            android:id="@+id/cpeptideInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="нг/мл"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/cpeptideLabel"
+            app:layout_constraintBottom_toBottomOf="@id/cpeptideLabel"
+            app:layout_constraintStart_toEndOf="@id/cpeptideLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Тромбоциты"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        <!-- Гемоглобин -->
+        <TextView
+            android:id="@+id/hemoglobinLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Гемоглобин"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/cpeptideLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/hemoglobinInput" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Холестерин общий (ммоль/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        <EditText
+            android:id="@+id/hemoglobinInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="г/л"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/hemoglobinLabel"
+            app:layout_constraintBottom_toBottomOf="@id/hemoglobinLabel"
+            app:layout_constraintStart_toEndOf="@id/hemoglobinLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ЛПВП (ммоль/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <!-- Лейкоциты -->
+        <TextView
+            android:id="@+id/leukocytesLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Лейкоциты"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/hemoglobinLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/leukocytesInput" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ЛПНП (ммоль/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        <EditText
+            android:id="@+id/leukocytesInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="×10⁹/л"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/leukocytesLabel"
+            app:layout_constraintBottom_toBottomOf="@id/leukocytesLabel"
+            app:layout_constraintStart_toEndOf="@id/leukocytesLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Триглицериды (ммоль/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        <!-- Тромбоциты -->
+        <TextView
+            android:id="@+id/plateletsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Тромбоциты"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/leukocytesLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/plateletsInput" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Креатинин (ммоль/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        <EditText
+            android:id="@+id/plateletsInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="×10⁹/л"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/plateletsLabel"
+            app:layout_constraintBottom_toBottomOf="@id/plateletsLabel"
+            app:layout_constraintStart_toEndOf="@id/plateletsLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Мочевина (ммоль/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        <!-- Холестерин общий -->
+        <TextView
+            android:id="@+id/cholesterolLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Холестерин общий (ммоль/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/plateletsLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cholesterolInput" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="АЛТ, АСТ (Ед/л)"
-        android:textSize="18dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        <EditText
+            android:id="@+id/cholesterolInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/cholesterolLabel"
+            app:layout_constraintBottom_toBottomOf="@id/cholesterolLabel"
+            app:layout_constraintStart_toEndOf="@id/cholesterolLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- ЛПВП -->
+        <TextView
+            android:id="@+id/hdlLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ЛПВП (ммоль/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/cholesterolLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/hdlInput" />
+
+        <EditText
+            android:id="@+id/hdlInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/hdlLabel"
+            app:layout_constraintBottom_toBottomOf="@id/hdlLabel"
+            app:layout_constraintStart_toEndOf="@id/hdlLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ЛПНП -->
+        <TextView
+            android:id="@+id/ldlLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ЛПНП (ммоль/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/hdlLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ldlInput" />
+
+        <EditText
+            android:id="@+id/ldlInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/ldlLabel"
+            app:layout_constraintBottom_toBottomOf="@id/ldlLabel"
+            app:layout_constraintStart_toEndOf="@id/ldlLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Триглицериды -->
+        <TextView
+            android:id="@+id/triglyceridesLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Триглицериды (ммоль/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/ldlLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/triglyceridesInput" />
+
+        <EditText
+            android:id="@+id/triglyceridesInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/triglyceridesLabel"
+            app:layout_constraintBottom_toBottomOf="@id/triglyceridesLabel"
+            app:layout_constraintStart_toEndOf="@id/triglyceridesLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Креатинин -->
+        <TextView
+            android:id="@+id/creatinineLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Креатинин (ммоль/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/triglyceridesLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/creatinineInput" />
+
+        <EditText
+            android:id="@+id/creatinineInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/creatinineLabel"
+            app:layout_constraintBottom_toBottomOf="@id/creatinineLabel"
+            app:layout_constraintStart_toEndOf="@id/creatinineLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Мочевина -->
+        <TextView
+            android:id="@+id/ureaLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Мочевина (ммоль/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/creatinineLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ureaInput" />
+
+        <EditText
+            android:id="@+id/ureaInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/ureaLabel"
+            app:layout_constraintBottom_toBottomOf="@id/ureaLabel"
+            app:layout_constraintStart_toEndOf="@id/ureaLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- АЛТ, АСТ -->
+        <TextView
+            android:id="@+id/altastLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="АЛТ, АСТ (Ед/л)"
+            android:textSize="16sp"
+            android:textColor="#34495E"
+            android:paddingVertical="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@id/ureaLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/altastInput" />
+
+        <EditText
+            android:id="@+id/altastInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="значение"
+            android:inputType="numberDecimal"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/input_background"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/altastLabel"
+            app:layout_constraintBottom_toBottomOf="@id/altastLabel"
+            app:layout_constraintStart_toEndOf="@id/altastLabel"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

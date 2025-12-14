@@ -12,6 +12,8 @@ class SessionManager(context: Context) {
         private const val KEY_USERNAME = "username"
         private const val KEY_EMAIL = "email"
         private const val KEY_COEFF_INSULIN = "coeffInsulin"
+        private const val KEY_STREAK = "no_sugar_streak"
+        private const val KEY_LAST_ASK_DATE = "last_ask_date"
 
     }
 
@@ -30,6 +32,18 @@ class SessionManager(context: Context) {
         return prefs.getFloat(KEY_COEFF_INSULIN, 0f).toDouble()
     }
 
+    fun getStreak(): Int = prefs.getInt(KEY_STREAK, 0)
+
+    fun saveStreak(value: Int) {
+        prefs.edit().putInt(KEY_STREAK, value).apply()
+    }
+
+    fun getLastAskDate(): String? =
+        prefs.getString(KEY_LAST_ASK_DATE, null)
+
+    fun saveLastAskDate(date: String) {
+        prefs.edit().putString(KEY_LAST_ASK_DATE, date).apply()
+    }
 
     fun isLoggedIn(): Boolean = getUsername() != null
 

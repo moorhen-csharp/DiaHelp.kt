@@ -22,7 +22,10 @@ class MedicalIndicationsFragment : Fragment() {
         val bloodAnalysis = view.findViewById<ConstraintLayout>(R.id.bloodAnalysis)
 
         bloodAnalysis.setOnClickListener {
-            Toast(requireContext()).showSuccessToast("Мяу!", requireActivity())
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, MedicalAnalysisFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
         return  view
