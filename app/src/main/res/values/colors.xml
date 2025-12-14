@@ -16,6 +16,8 @@
     <color name="color_shape_dialogBackground_containers">#696969</color>
     <color name="color_text_shape_dialogBackground_containers">#FFFFFF</color>
     <color name="color_TextInputLayout">#000000</color>
+    <color name="color_shape_input_layout">#FFFFFF</color>
+    <color name="color_shape_input_layout_texthint">#000000</color>
 
     <color name="grayNeutral">#999999</color>
     <color name="blueLow">#42A5F5</color>
