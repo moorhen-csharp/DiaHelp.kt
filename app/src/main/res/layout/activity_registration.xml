@@ -34,6 +34,7 @@
             style="@style/CustomTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text"
             android:fontFamily="@font/comfortaa_light"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,6 +57,7 @@
             style="@style/CustomTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text"
             android:inputType="textEmailAddress"
             android:fontFamily="@font/comfortaa_light" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +80,7 @@
             style="@style/CustomTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text"
             android:fontFamily="@font/comfortaa_light"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -100,6 +103,7 @@
             style="@style/CustomTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text"
             android:fontFamily="@font/comfortaa_light"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -122,6 +126,7 @@
             style="@style/CustomTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text"
             android:fontFamily="@font/comfortaa_light"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
