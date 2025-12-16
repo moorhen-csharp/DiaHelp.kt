@@ -150,6 +150,7 @@ class SugarNoteFragment : Fragment() {
             session.saveStreak(0)
             session.saveLastAskDate(today)
             updateStreakUI(0, streakText, streakIcon)
+            dialog.dismiss()
         }
 
         btnCancel.setOnClickListener {
