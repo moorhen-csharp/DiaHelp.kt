@@ -1,5 +1,7 @@
 package dev.moorhen.diahelp.view.fragments
 
+import SugarEntryViewModel
+import SugarEntryViewModelFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +13,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.data.repository.SugarRepository
-import dev.moorhen.diahelp.viewmodel.SugarEntryViewModel
-import dev.moorhen.diahelp.viewmodel.SugarEntryViewModelFactory
+import dev.moorhen.diahelp.utils.SessionManager // ✅
 
 class SugarEntryFragment : Fragment() {
 
@@ -25,9 +26,12 @@ class SugarEntryFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_sugar_entry, container, false)
 
-        // ✅ создаем репозиторий и фабрику
         val repository = SugarRepository(requireContext())
-        val factory = SugarEntryViewModelFactory(repository, requireActivity().application)
+        // ✅ Создаем SessionManager
+        val session = SessionManager(requireContext())
+        // ✅ Создаем фабрику с repository, application и sessionManager
+        val factory = SugarEntryViewModelFactory(repository, requireActivity().application, session)
+        // ✅ Используем обновленную фабрику
         viewModel = ViewModelProvider(this, factory)[SugarEntryViewModel::class.java]
 
         val sugarInput = view.findViewById<TextInputEditText>(R.id.inputSugarLevel)
@@ -37,7 +41,6 @@ class SugarEntryFragment : Fragment() {
         val btnNotMeasured = view.findViewById<MaterialButton>(R.id.btnNotMeasured)
         val btnSave = view.findViewById<MaterialButton>(R.id.btnSave)
 
-        // ✅ обработчики выбора типа сахара и самочувствия
         sugarTypeGroup.setOnCheckedChangeListener { group, checkedId ->
             val chip = group.findViewById<Chip>(checkedId)
             viewModel.selectedSugarType = chip?.text?.toString()
@@ -48,13 +51,11 @@ class SugarEntryFragment : Fragment() {
             viewModel.selectedHealthType = chip?.text?.toString()
         }
 
-        // ✅ "Не измерял"
         btnNotMeasured.setOnClickListener {
             viewModel.notMeasured()
             sugarInput.setText("0")
         }
 
-        // ✅ Сохранение
         btnSave.setOnClickListener {
             viewModel.sugarLevel = sugarInput.text.toString().toDoubleOrNull()
             viewModel.insulinDose = insulinInput.text.toString().toDoubleOrNull()

@@ -1,5 +1,7 @@
 package dev.moorhen.diahelp.view.fragments
 
+import SugarNoteViewModel
+import SugarNoteViewModelFactory
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,8 +23,6 @@ import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.data.repository.SugarRepository
 import dev.moorhen.diahelp.utils.SessionManager
 import dev.moorhen.diahelp.view.adapters.SugarAdapter
-import dev.moorhen.diahelp.viewmodel.SugarNoteViewModel
-import dev.moorhen.diahelp.viewmodel.SugarNoteViewModelFactory
 import java.util.Date
 import java.util.Locale
 
@@ -45,14 +45,16 @@ class SugarNoteFragment : Fragment() {
         val avgText = view.findViewById<TextView>(R.id.textAverage)
         val noDataText = view.findViewById<TextView>(R.id.tvNoData)
         val streakText = view.findViewById<TextView>(R.id.textStreak)
-        val session = SessionManager(requireContext())
+        val session = SessionManager(requireContext()) // ✅ SessionManager для streak и проверки
         val streakIcon = view.findViewById<ImageView>(R.id.sugarStreak)
 
         val streak = session.getStreak()
         updateStreakUI(streak, streakText, streakIcon)
 
         val repository = SugarRepository(requireContext())
-        val factory = SugarNoteViewModelFactory(repository, requireActivity().application)
+        // ✅ Создаем фабрику с repository, application и sessionManager
+        val factory = SugarNoteViewModelFactory(repository, requireActivity().application, session)
+        // ✅ Используем обновленную фабрику
         viewModel = ViewModelProvider(this, factory)[SugarNoteViewModel::class.java]
 
         viewModel.isEmpty.observe(viewLifecycleOwner) { isEmpty ->
@@ -121,6 +123,7 @@ class SugarNoteFragment : Fragment() {
 
         return view
     }
+
     private fun checkDailySugarDialog(
         session: SessionManager,
         streakText: TextView,
@@ -162,16 +165,16 @@ class SugarNoteFragment : Fragment() {
         }
     }
 
-    private fun  updateStreakUI(
+    private fun updateStreakUI(
         streak: Int,
         streakText: TextView,
         streakIcon: ImageView
-    ){
+    ) {
         streakText.text = streak.toString()
 
-        val iconRes = if (streak > 0){
+        val iconRes = if (streak > 0) {
             R.drawable.ic_sugar_streak_red
-        }else{
+        } else {
             R.drawable.ic_sugar_streak_gray
         }
 
@@ -180,7 +183,7 @@ class SugarNoteFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadSugarNotes()
+        viewModel.loadSugarNotes() // ✅ Перезагружаем данные при возврате на фрагмент
         viewModel.calculateAverage()
     }
 }

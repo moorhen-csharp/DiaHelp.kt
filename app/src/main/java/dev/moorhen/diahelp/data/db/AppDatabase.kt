@@ -11,8 +11,8 @@ import dev.moorhen.diahelp.data.model.SugarModel
 import dev.moorhen.diahelp.util.Converters
 
 @Database(
-    entities = [UserModel::class, SugarModel::class], // ✅ добавили SugarModel
-    version = 2, // 🔺 увеличь версию БД, чтобы Room пересоздал таблицы
+    entities = [UserModel::class, SugarModel::class],
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -32,7 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "diahelp_db"
                 )
-                    .fallbackToDestructiveMigration() // 🔹 чтобы не крашилось при смене version
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

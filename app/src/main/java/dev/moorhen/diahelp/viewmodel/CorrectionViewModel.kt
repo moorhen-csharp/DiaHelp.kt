@@ -51,7 +51,9 @@ class CorrectionViewModel(application: Application) : AndroidViewModel(applicati
     // Новая функция для сохранения записи
     fun saveSugarNote(sugarLevel: Double, insulinDose: Double) {
         val repository = SugarRepository(getApplication())
+        val userId = sessionManager.getUserId()
         val note = SugarModel(
+            userId = userId, // <-- Добавлено
             SugarLevel = sugarLevel,
             MeasurementTime = "Коррекция",
             HealthType = "Не указано",

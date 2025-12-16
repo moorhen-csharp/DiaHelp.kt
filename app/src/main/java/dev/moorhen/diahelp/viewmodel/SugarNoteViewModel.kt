@@ -1,13 +1,17 @@
-package dev.moorhen.diahelp.viewmodel
-
+// dev.moorhen.diahelp.viewmodel.SugarNoteViewModel
 import android.app.Application
 import androidx.lifecycle.*
 import dev.moorhen.diahelp.data.model.SugarModel
 import dev.moorhen.diahelp.data.repository.SugarRepository
+import dev.moorhen.diahelp.utils.SessionManager // ✅
 import kotlinx.coroutines.launch
 import java.util.*
 
-class SugarNoteViewModel(private val repository: SugarRepository, app: Application) : AndroidViewModel(app) {
+class SugarNoteViewModel(
+    private val repository: SugarRepository,
+    app: Application,
+    private val sessionManager: SessionManager
+) : AndroidViewModel(app) {
 
     val sugarNotes = MutableLiveData<List<SugarModel>>()
     val average = MutableLiveData<Double>()
@@ -20,8 +24,16 @@ class SugarNoteViewModel(private val repository: SugarRepository, app: Applicati
     }
 
     fun loadSugarNotes() {
+        // ✅ Проверяем, залогинен ли пользователь
+        val userId = sessionManager.getUserId()
+        if (userId == -1) {
+            sugarNotes.postValue(emptyList())
+            isEmpty.postValue(true)
+            return
+        }
+
         viewModelScope.launch {
-            val list = repository.getAllSugarNotes()
+            val list = repository.getAllSugarNotesByUserId(userId)
             sugarNotes.postValue(list)
             isEmpty.postValue(list.isEmpty())
             calculateAverage()
@@ -29,13 +41,22 @@ class SugarNoteViewModel(private val repository: SugarRepository, app: Applicati
     }
 
     fun clearNotes() {
+        val userId = sessionManager.getUserId()
+        if (userId == -1) return
+
         viewModelScope.launch {
-            repository.clearAll()
+            repository.clearAllForUser(userId)
             loadSugarNotes()
         }
     }
 
     fun calculateAverage() {
+        val userId = sessionManager.getUserId()
+        if (userId == -1) {
+            average.postValue(0.0)
+            return
+        }
+
         viewModelScope.launch {
             val endDate = Date()
             val startDate = when (selectedPeriod.value) {
@@ -47,7 +68,7 @@ class SugarNoteViewModel(private val repository: SugarRepository, app: Applicati
                 "1 Год" -> Date(endDate.time - 365L * 86400000L)
                 else -> Date()
             }
-            val notes = repository.getNotesByPeriod(startDate, endDate)
+            val notes = repository.getNotesByPeriod(userId, startDate, endDate)
             val valid = notes.filter { it.SugarLevel != -1.0 }
             val avg = if (valid.isNotEmpty()) valid.map { it.SugarLevel }.average() else 0.0
             average.postValue(avg)
