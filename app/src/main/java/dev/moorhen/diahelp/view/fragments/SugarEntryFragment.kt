@@ -13,7 +13,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import dev.moorhen.diahelp.R
 import dev.moorhen.diahelp.data.repository.SugarRepository
-import dev.moorhen.diahelp.utils.SessionManager // ✅
+import dev.moorhen.diahelp.utils.SessionManager
 
 class SugarEntryFragment : Fragment() {
 
@@ -27,11 +27,8 @@ class SugarEntryFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_sugar_entry, container, false)
 
         val repository = SugarRepository(requireContext())
-        // ✅ Создаем SessionManager
         val session = SessionManager(requireContext())
-        // ✅ Создаем фабрику с repository, application и sessionManager
         val factory = SugarEntryViewModelFactory(repository, requireActivity().application, session)
-        // ✅ Используем обновленную фабрику
         viewModel = ViewModelProvider(this, factory)[SugarEntryViewModel::class.java]
 
         val sugarInput = view.findViewById<TextInputEditText>(R.id.inputSugarLevel)
@@ -53,7 +50,6 @@ class SugarEntryFragment : Fragment() {
 
         btnNotMeasured.setOnClickListener {
             viewModel.notMeasured()
-            sugarInput.setText("0")
         }
 
         btnSave.setOnClickListener {

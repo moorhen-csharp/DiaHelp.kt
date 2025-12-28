@@ -65,6 +65,6 @@ class CorrectionViewModel(application: Application) : AndroidViewModel(applicati
             repository.insert(note)
         }
     }
-    }
+}
 
 

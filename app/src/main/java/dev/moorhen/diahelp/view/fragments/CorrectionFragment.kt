@@ -19,8 +19,6 @@ import dev.moorhen.diahelp.utils.showSuccessToast
 class CorrectionFragment : Fragment() {
     private val viewModel: CorrectionViewModel by viewModels()
 
-    // В CorrectionFragment.kt
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
