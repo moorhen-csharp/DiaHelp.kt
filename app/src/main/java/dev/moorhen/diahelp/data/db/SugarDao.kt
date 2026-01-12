@@ -1,4 +1,4 @@
-package dev.moorhen.diahelp.data.dao
+package dev.moorhen.diahelp.data.db
 
 import androidx.room.*
 import dev.moorhen.diahelp.data.model.SugarModel

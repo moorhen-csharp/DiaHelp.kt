@@ -1,6 +1,7 @@
 package dev.moorhen.diahelp.viewmodel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,8 +24,6 @@ class CorrectionViewModel(application: Application) : AndroidViewModel(applicati
     private val _correctionResult = MutableLiveData<String>()
     val correctionResult: LiveData<String> = _correctionResult
 
-    // В CorrectionViewModel.kt
-
     private val _showDialog = MutableLiveData<Pair<Double, Double>>()
     val showDialog: LiveData<Pair<Double, Double>> = _showDialog
 
@@ -42,18 +41,26 @@ class CorrectionViewModel(application: Application) : AndroidViewModel(applicati
             val finalValue = if (correction < 0) 0.0 else correction
 
             _correctionResult.postValue("%.1f".format(finalValue))
-
-            // Отправляем данные в LiveData, чтобы показать диалог
             _showDialog.postValue(Pair(currentGlucose, finalValue))
         }
     }
 
-    // Новая функция для сохранения записи
+    // ✅ Обновленная функция с проверкой авторизации
     fun saveSugarNote(sugarLevel: Double, insulinDose: Double) {
-        val repository = SugarRepository(getApplication())
+        // ✅ Получаем контекст приложения для показа Toast
+        val context = getApplication<Application>().applicationContext
+
+        // ✅ Проверяем, залогинен ли пользователь
         val userId = sessionManager.getUserId()
+        if (userId == -1) {
+            // ✅ Показываем сообщение об ошибке
+            Toast.makeText(context, "Ошибка: пользователь не авторизован", Toast.LENGTH_SHORT).show()
+            return // Прерываем выполнение, чтобы не пытаться сохранить запись
+        }
+
+        val repository = SugarRepository(context)
         val note = SugarModel(
-            userId = userId, // <-- Добавлено
+            userId = userId,
             SugarLevel = sugarLevel,
             MeasurementTime = "Коррекция",
             HealthType = "Не указано",

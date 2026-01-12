@@ -66,7 +66,6 @@ class CorrectionFragment : Fragment() {
         return view
     }
 
-    // 👇 Новая функция для отображения диалога
     private fun showSaveConfirmationDialog(sugarLevel: Double, insulinDose: Double) {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_correction_insulin, null)
 

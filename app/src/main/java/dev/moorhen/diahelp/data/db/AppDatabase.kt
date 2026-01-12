@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import dev.moorhen.diahelp.data.dao.SugarDao
+import dev.moorhen.diahelp.data.db.SugarDao
 import dev.moorhen.diahelp.data.model.UserModel
 import dev.moorhen.diahelp.data.model.SugarModel
 import dev.moorhen.diahelp.util.Converters
